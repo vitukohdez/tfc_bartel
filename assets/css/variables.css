@@ -1,16 +1,15 @@
-/* assets/css/variables.css */
 :root {
-    /* Paleta Blonded: Blanco y Negro puro */
+    /* Paleta Bartel */
     --bg-color: #ffffff;
     --text-color: #000000;
     --accent-color: #555555;
     
-    /* Tipografía: Helvetica/Arial es lo más parecido al estilo original */
+    /* Tipografía */
     --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     
-    /* Espaciados */
-    --padding-std: 20px;
-    --nav-height: 60px;
+    /* Medidas */
+    --padding-std: 40px;
+    --nav-height: 70px;
 }
 
 * {
@@ -24,6 +23,7 @@ body {
     color: var(--text-color);
     font-family: var(--font-main);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
 a {

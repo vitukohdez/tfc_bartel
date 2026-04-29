@@ -1,22 +1,21 @@
 <?php 
-// Incluimos la conexión a la base de datos (por ahora no la usamos pero debe estar)
 require_once 'includes/db.php'; 
 
-// Incluimos el header
+// Esta es la "magia": le decimos al archivo header.php que no muestre el menú aquí
+$hide_header = true; 
 include 'includes/header.php'; 
 ?>
 
 <section class="hero">
-    <h1>SUMMER 2026</h1>
-    <p>OBJECTS OF DESIRE</p>
-    <br>
-    <a href="shop.php" style="border: 1px solid black; padding: 10px 20px; font-size: 0.7rem; font-weight: bold;">ENTER SHOP</a>
+    <video autoplay muted loop playsinline class="video-bg">
+        <source src="assets/video/hero-bg.mp4" type="video/mp4">
+    </video>
+
+    <div class="hero-content">
+        <h1>BARTEL</h1>
+        <p>SUMMER 2026</p>
+        <a href="shop.php" class="btn-shop">ENTER SHOP</a>
+    </div>
 </section>
 
-<?php 
-// Incluimos el footer (créalo vacío de momento o ponle un <footer>)
-echo "<footer><p style='text-align:center; padding: 50px; font-size: 0.6rem;'>© 2026 BLONDED. ALL RIGHTS RESERVED.</p></footer>";
-?>
-
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>
