@@ -1,0 +1,32 @@
+/* assets/css/variables.css */
+:root {
+    /* Paleta Blonded: Blanco y Negro puro */
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --accent-color: #555555;
+    
+    /* Tipografía: Helvetica/Arial es lo más parecido al estilo original */
+    --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    
+    /* Espaciados */
+    --padding-std: 20px;
+    --nav-height: 60px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
