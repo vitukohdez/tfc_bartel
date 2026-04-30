@@ -18,6 +18,7 @@
         <div class="nav-right">
             <ul>
                 <li><a href="shop.php">SHOP</a></li>
+                <li><a href="musica.php">MUSIC</a></li>
                 
                 <!-- MAGIA DE LAS SESIONES AQUÍ -->
                 <?php if(isset($_SESSION['user_id'])): ?>
@@ -26,7 +27,11 @@
                     <li><a href="login.php">ACCOUNT</a></li>
                 <?php endif; ?>
                 
-                <li><a href="#">CART (0)</a></li>
+                <li>
+    <a href="carrito.php">
+        CART (<?php echo isset($_SESSION['carrito']) ? array_sum($_SESSION['carrito']) : '0'; ?>)
+    </a>
+</li>
             </ul>
         </div>
     </nav>
