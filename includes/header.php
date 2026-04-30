@@ -9,10 +9,7 @@
 </head>
 <body class="<?php echo isset($hide_header) && $hide_header ? 'no-header' : ''; ?>">
 
-<?php 
-// Solo mostramos el nav si NO hemos pedido esconderlo
-if (!isset($hide_header) || !$hide_header): 
-?>
+<?php if (!isset($hide_header) || !$hide_header): ?>
 <header>
     <nav class="main-nav">
         <div class="nav-left">
@@ -21,7 +18,14 @@ if (!isset($hide_header) || !$hide_header):
         <div class="nav-right">
             <ul>
                 <li><a href="shop.php">SHOP</a></li>
-                <li><a href="login.php">ACCOUNT</a></li>
+                
+                <!-- MAGIA DE LAS SESIONES AQUÍ -->
+                <?php if(isset($_SESSION['user_id'])): ?>
+                    <li><a href="logout.php" style="color: var(--accent-color);">LOGOUT (<?php echo strtoupper(htmlspecialchars($_SESSION['username'])); ?>)</a></li>
+                <?php else: ?>
+                    <li><a href="login.php">ACCOUNT</a></li>
+                <?php endif; ?>
+                
                 <li><a href="#">CART (0)</a></li>
             </ul>
         </div>
