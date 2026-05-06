@@ -46,11 +46,30 @@ a {
     border-bottom: 1px solid rgba(0,0,0,0.05); /* Borde sutil inferior */
 }
 
+/* 1. El logo normal para el menú superior */
 .logo {
+    font-family: var(--font-main);
     font-weight: 900;
-    letter-spacing: 6px;
-    font-size: 1.2rem;
-    color: #000000; /* Texto negro */
+    font-style: italic;
+    font-size: 2.5rem; /* Más grande de lo habitual */
+    letter-spacing: -4px; /* Letras fusionadas */
+    text-transform: lowercase; /* Siempre en minúsculas */
+    color: #000;
+    text-decoration: none;
+    line-height: 1;
+}
+
+/* 2. El logo GIGANTE para la portada */
+.logo-gigante {
+    font-family: var(--font-main);
+    font-weight: 900;
+    font-style: italic;
+    font-size: 15vw; /* Crece y encoge con la pantalla */
+    letter-spacing: -10px; /* Al ser tan grande, necesitamos juntar más las letras */
+    text-transform: lowercase;
+    color: #000; /* Cámbialo a #fff si tu fondo de portada es muy oscuro */
+    margin: 0;
+    line-height: 0.8;
 }
 
 .nav-right ul {
@@ -502,14 +521,14 @@ body.no-header .hero {
     cursor: pointer;
 }
 /* =========================================
-   12. ANIMACIÓN LOGO ROTATIVO (GLOBAL)
+   12. ANIMACIÓN LOGO ROTATIVO (EFECTO MONEDA 3D)
    ========================================= */
 @keyframes rotacionContinua {
     from {
-        transform: rotate(0deg);
+        transform: perspective(500px) rotateY(0deg);
     }
     to {
-        transform: rotate(360deg);
+        transform: perspective(500px) rotateY(360deg);
     }
 }
 
@@ -517,9 +536,8 @@ body.no-header .hero {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 80px; /* Ajusta el tamaño si lo necesitas */
+    width: 80px; 
     z-index: 9999;
-    pointer-events: none; /* Para que no moleste si haces clic encima */
-    /* Aquí llamamos a la animación: tarda 10 segundos en dar una vuelta, velocidad constante (linear) e infinita */
-    animation: rotacionContinua 10s linear infinite; 
+    pointer-events: none;
+    animation: rotacionContinua 8s linear infinite; 
 }

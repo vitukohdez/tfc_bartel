@@ -5,8 +5,7 @@
     --accent-color: #555555;
     
     /* Tipografía */
-    --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    
+    --font-main: 'DM Sans', sans-serif;    
     /* Medidas */
     --padding-std: 40px;
     --nav-height: 70px;

@@ -12,10 +12,12 @@ include 'includes/header.php';
     </video>
 
     <div class="hero-content">
-        <h1>BARTEL</h1>
-        <p>SUMMER 2026</p>
-        <a href="shop.php" class="btn-shop">ENTER SHOP</a>
-    </div>
+            <!-- LOGO TEXTO GIGANTE -->
+            <h1 class="logo-gigante">bartel</h1>
+            
+            <p style="letter-spacing: 4px; margin-top: 20px;">SUMMER 2026</p>
+            <a href="shop.php" class="btn-shop">ENTER STORE</a>
+        </div>
 </section>
 
 <?php include 'includes/footer.php'; ?>
