@@ -60,16 +60,35 @@ a {
 }
 
 /* 2. El logo GIGANTE para la portada */
+/* 2. El logo GIGANTE para la portada con DEGRADADO */
+/* 2. El logo GIGANTE para la portada */
 .logo-gigante {
     font-family: var(--font-main);
     font-weight: 900;
     font-style: italic;
-    font-size: 15vw; /* Crece y encoge con la pantalla */
-    letter-spacing: -10px; /* Al ser tan grande, necesitamos juntar más las letras */
+    font-size: 15vw; 
+    letter-spacing: -10px; 
     text-transform: lowercase;
-    color: #000; /* Cámbialo a #fff si tu fondo de portada es muy oscuro */
     margin: 0;
     line-height: 0.8;
+    /* Hemos quitado el degradado de aquí porque ahora va en las letras */
+}
+
+/* El DEGRADADO INDIVIDUAL para cada letra */
+/* EL ESTILO DEFINITIVO: Contorno Hueco Y2K */
+.logo-gigante {
+    font-family: var(--font-main);
+    font-weight: 900;
+    font-style: italic;
+    font-size: 15vw;
+    letter-spacing: -10px; 
+    text-transform: lowercase;
+    margin: 0;
+    line-height: 0.8;
+
+    color: #ffdd03; /* Rojo vibrante */
+    /* Resplandor oscuro para que no se pierda */
+    text-shadow: 0px 5px 15px rgba(0, 0, 0, 0.6); 
 }
 
 .nav-right ul {
