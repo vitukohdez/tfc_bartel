@@ -560,3 +560,67 @@ body.no-header .hero {
     pointer-events: none;
     animation: rotacionContinua 8s linear infinite; 
 }
+
+/* =========================================
+   SECCIÓN "MÁS PRODUCTOS" (PÁGINA INDIVIDUAL)
+   ========================================= */
+.more-products {
+    padding: 80px var(--padding-std);
+    max-width: 1200px;
+    margin: 0 auto;
+    border-top: 1px solid #dddddd; /* Una línea sutil para separar la ficha del producto de esta sección */
+}
+
+.more-products h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    letter-spacing: 4px;
+    margin-bottom: 50px;
+    font-weight: 900;
+}
+
+.product-grid {
+    display: grid;
+    /* Esto hace que sea responsive automáticamente: 
+       En móvil se pondrán en 1 columna, en PC en 4 columnas */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+}
+
+.product-card {
+    text-align: center;
+    transition: transform 0.3s ease; /* Transición suave */
+}
+
+/* Efecto al pasar el ratón: el producto flota un poco hacia arriba */
+.product-card:hover {
+    transform: translateY(-8px);
+}
+
+.product-card a {
+    text-decoration: none;
+    color: #000;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1; /* Mantiene las fotos cuadradas uniformes */
+    object-fit: cover; /* Evita que las fotos se deformen */
+    margin-bottom: 15px;
+    background-color: #f9f9f9; /* Un fondito gris muy claro por si la foto tiene transparencias */
+}
+
+.product-card h3 {
+    font-family: var(--font-main);
+    font-size: 1.1rem;
+    letter-spacing: -1px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.product-card p {
+    font-weight: bold;
+    color: #666;
+    font-size: 1rem;
+}

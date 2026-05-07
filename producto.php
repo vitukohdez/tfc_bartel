@@ -52,5 +52,33 @@ include 'includes/header.php';
         </form>
     </div>
 </section>
-
+<section class="more-products">
+            <h2>YOU MAY ALSO LIKE</h2>
+            <div class="product-grid">
+                <?php
+                /* * Hacemos una consulta a la base de datos para sacar 4 productos.
+                 * Usamos ORDER BY RAND() para que salgan aleatorios cada vez.
+                 * (Asegúrate de que tu variable de conexión se llama $conn o $conexion 
+                 * y que tu tabla se llama 'productos')
+                 */
+                $query_mas = "SELECT * FROM productos ORDER BY RAND() LIMIT 4";
+                
+                // Si usas mysqli:
+                $resultado_mas = mysqli_query($conexion, $query_mas);
+                
+                // Bucle para mostrar los productos
+                while($item = mysqli_fetch_assoc($resultado_mas)) {
+                ?>
+                    <div class="product-card">
+                        <a href="producto.php?id=<?php echo $item['id']; ?>">
+                            <img src="assets/images/<?php echo $item['imagen']; ?>" alt="<?php echo $item['nombre']; ?>">
+                            <h3><?php echo $item['nombre']; ?></h3>
+                            <p><?php echo $item['precio']; ?> €</p>
+                        </a>
+                    </div>
+                <?php 
+                } 
+                ?>
+            </div>
+        </section>
 <?php include 'includes/footer.php'; ?>
