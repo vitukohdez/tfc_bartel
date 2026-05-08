@@ -14,27 +14,32 @@
 
 <?php if (!isset($hide_header) || !$hide_header): ?>
 <header>
-    <nav class="main-nav">
+    <nav class="navbar">
         <div class="nav-left">
-            <a href="index.php" class="logo">BARTEL</a>
-        </div>
-        <div class="nav-right">
             <ul>
                 <li><a href="shop.php">SHOP</a></li>
                 <li><a href="musica.php">MUSIC</a></li>
-                
-                <!-- MAGIA DE LAS SESIONES AQUÍ -->
-                <?php if(isset($_SESSION['user_id'])): ?>
-                    <li><a href="logout.php" style="color: var(--accent-color);">LOGOUT (<?php echo strtoupper(htmlspecialchars($_SESSION['username'])); ?>)</a></li>
-                <?php else: ?>
-                    <li><a href="login.php">ACCOUNT</a></li>
+                <li><a href="inspiration.php">INSPIRATION</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-center">
+            <a href="index.php" class="logo">bartel</a>
+        </div>
+
+        <div class="nav-right">
+            <ul>
+                <?php 
+                if (isset($_SESSION['user_id'])): 
+                ?>
+                    <li><a href="logout.php">LOG OUT</a></li>
+                <?php 
+                else: 
+                ?>
+                    <li><a href="login.php">LOG IN</a></li>
                 <?php endif; ?>
-                
-                <li>
-    <a href="carrito.php">
-        CART (<?php echo isset($_SESSION['carrito']) ? array_sum($_SESSION['carrito']) : '0'; ?>)
-    </a>
-</li>
+
+                <li><a href="carrito.php">CART (<?php echo isset($_SESSION['carrito']) ? count($_SESSION['carrito']) : 0; ?>)</a></li>
             </ul>
         </div>
     </nav>

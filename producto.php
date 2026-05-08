@@ -52,23 +52,28 @@ include 'includes/header.php';
         </form>
     </div>
 </section>
+
 <section class="more-products">
-            <h2>YOU MAY ALSO LIKE</h2>
-            <div class="product-grid">
-                <?php
-                /* * Hacemos una consulta a la base de datos para sacar 4 productos.
-                 * Usamos ORDER BY RAND() para que salgan aleatorios cada vez.
-                 * (Asegúrate de que tu variable de conexión se llama $conn o $conexion 
-                 * y que tu tabla se llama 'productos')
-                 */
-                $query_mas = "SELECT * FROM productos ORDER BY RAND() LIMIT 4";
-                
-                // Si usas mysqli:
-                $resultado_mas = mysqli_query($conexion, $query_mas);
-                
-                // Bucle para mostrar los productos
-                while($item = mysqli_fetch_assoc($resultado_mas)) {
-                ?>
+    <h2>YOU MAY ALSO LIKE</h2>
+    <div class="product-grid">
+        <?php
+        try {
+            // Consulta pidiendo 4 productos al azar
+            $query_mas = "SELECT * FROM productos ORDER BY RAND() LIMIT 4";
+            
+            // Ejecutamos la consulta usando tu variable $pdo
+            $stmt = $pdo->query($query_mas);
+            
+            // Obtenemos todos los resultados en un array
+            $productos_relacionados = $stmt->fetchAll();
+            
+            // Comprobamos si hay productos
+            if (count($productos_relacionados) == 0) {
+                echo "<p style='text-align: center; width: 100%;'>No hay productos extra para mostrar.</p>";
+            } else {
+                // Bucle para mostrar cada producto
+                foreach ($productos_relacionados as $item) {
+        ?>
                     <div class="product-card">
                         <a href="producto.php?id=<?php echo $item['id']; ?>">
                             <img src="assets/images/<?php echo $item['imagen']; ?>" alt="<?php echo $item['nombre']; ?>">
@@ -76,9 +81,15 @@ include 'includes/header.php';
                             <p><?php echo $item['precio']; ?> €</p>
                         </a>
                     </div>
-                <?php 
-                } 
-                ?>
-            </div>
-        </section>
+        <?php 
+                } // fin del foreach
+            } // fin del if
+        } catch (PDOException $e) {
+            // Si algo falla en la base de datos, te lo chiva en rojo
+            echo "<p style='color: red; text-align: center;'>Error SQL: " . $e->getMessage() . "</p>";
+        }
+        ?>
+    </div>
+</section>
+
 <?php include 'includes/footer.php'; ?>

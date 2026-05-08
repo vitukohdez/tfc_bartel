@@ -1,6 +1,3 @@
-/* =========================================
-   1. RESET Y ESTRUCTURA BASE (Sin cambios)
-   ========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -8,13 +5,12 @@
 }
 
 body {
-    background-color: var(--bg-color); /* Blanco definido en variables */
-    color: var(--text-color); /* Negro definido en variables */
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-family: var(--font-main);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
     line-height: 1.6;
-    /* Añadimos un padding top igual a la altura del header para que el contenido no se pegue */
     padding-top: var(--nav-height); 
 }
 
@@ -23,59 +19,68 @@ a {
     color: inherit;
 }
 
-/* =========================================
-   2. HEADER Y NAVEGACIÓN (NUEVO: Separado, blanco sólido)
-   ========================================= */
-.main-nav {
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 var(--padding-std);
     height: var(--nav-height);
-    position: fixed; /* Mantenemos fijo para usabilidad, pero ahora es opaco */
+    background: #ffffff;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    
-    /* MODIFICACIÓN REQUERIDA: Fondo blanco sólido para separarlo visualmente */
-    background: #ffffff; 
-    backdrop-filter: none; /* Eliminamos el efecto borroso anterior */
-    -webkit-backdrop-filter: none;
-    
-    z-index: 9999; 
-    border-bottom: 1px solid rgba(0,0,0,0.05); /* Borde sutil inferior */
+    z-index: 9999;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-/* 1. El logo normal para el menú superior */
-.logo {
-    font-family: var(--font-main);
-    font-weight: 900;
-    font-style: italic;
-    font-size: 2.5rem; /* Más grande de lo habitual */
-    letter-spacing: -4px; /* Letras fusionadas */
-    text-transform: lowercase; /* Siempre en minúsculas */
+.nav-left, .nav-center, .nav-right {
+    flex: 1;
+}
+
+.nav-left ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+}
+
+.nav-center {
+    text-align: center;
+}
+
+.nav-right ul {
+    display: flex;
+    gap: 30px;
+    justify-content: flex-end;
+    list-style: none;
+    padding: 0;
+}
+
+.navbar a {
+    text-decoration: none;
     color: #000;
+    font-weight: bold;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+.logo {
+    font-family: var(--font-main), 'DM Sans', sans-serif !important;
+    font-weight: 900 !important; 
+    font-style: italic !important;
+    font-size: 2.5rem !important;
+    
+    letter-spacing: -5px !important; 
+    
+    text-transform: lowercase !important;
+    color: #000000 !important;
     text-decoration: none;
     line-height: 1;
+    display: inline-block;
+    margin: 0 !important;
 }
 
-/* 2. El logo GIGANTE para la portada */
-/* 2. El logo GIGANTE para la portada con DEGRADADO */
-/* 2. El logo GIGANTE para la portada */
-.logo-gigante {
-    font-family: var(--font-main);
-    font-weight: 900;
-    font-style: italic;
-    font-size: 15vw; 
-    letter-spacing: -10px; 
-    text-transform: lowercase;
-    margin: 0;
-    line-height: 0.8;
-    /* Hemos quitado el degradado de aquí porque ahora va en las letras */
-}
-
-/* El DEGRADADO INDIVIDUAL para cada letra */
-/* EL ESTILO DEFINITIVO: Contorno Hueco Y2K */
 .logo-gigante {
     font-family: var(--font-main);
     font-weight: 900;
@@ -85,61 +90,32 @@ a {
     text-transform: lowercase;
     margin: 0;
     line-height: 0.8;
-
-    color: #ffdd03; /* Rojo vibrante */
-    /* Resplandor oscuro para que no se pierda */
+    color: #ffdd03;
     text-shadow: 0px 5px 15px rgba(0, 0, 0, 0.6); 
 }
 
-.nav-right ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-}
-
-.nav-right a {
-    font-size: 0.7rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: #000000; /* Texto negro */
-}
-
-/* =========================================
-   3. SECCIÓN DEL VÍDEO (NUEVO: Ver video integro, sin recortar, sin oscurecer mucho)
-   ========================================= */
 .hero {
     position: relative;
-    
-    /* MODIFICACIÓN REQUERIDA: Ya no ocupa 100vh obligatoriamente. 
-       Su alto lo definirá el vídeo que hay dentro (integro) */
     height: auto; 
     width: 100%;
-    
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background-color: #000; /* Fondo negro por si el video tarda en cargar */
-    
-    /* Separación física del header y footer */
+    background-color: #000;
     margin-top: 20px; 
     margin-bottom: 20px;
 }
 
 .video-bg {
-    /* MODIFICACIÓN REQUERIDA: Ya no flota absoluta sobre toda la pantalla. 
-       Se comporta como una imagen normal (integra). */
     display: block;
     position: static; 
-    width: 100%; /* Ocupa el ancho total del contenedor */
-    height: auto; /* Ajusta el alto automáticamente según el formato del vídeo (no recorta) */
-    
-    /* object-fit: contain asegura que se vea entero dentro de su espacio */
+    width: 100%;
+    height: auto;
     object-fit: contain; 
     z-index: 1;
 }
 
-/* Capa sobre el vídeo para el texto */
 .hero::after {
     content: '';
     position: absolute;
@@ -147,28 +123,19 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
-    
-    /* MODIFICACIÓN REQUERIDA: Reducimos MUCHO la opacidad para no bajar el brillo.
-       Cambiado de 0.3 (30%) a 0.05 (solo 5% de oscurecimiento) o 0.1 (10%).
-       Usaré 0.1 para mantener una mínima legibilidad del texto blanco. */
     background: rgba(0, 0, 0, 0.1); 
-    
-    z-index: 2; /* Por encima del vídeo, por debajo del texto */
+    z-index: 2;
 }
 
 .hero-content {
-    /* MODIFICACIÓN REQUERIDA: Posicionado absoluto pero centrado sobre el vídeo estático */
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centrado perfecto */
+    transform: translate(-50%, -50%);
     text-align: center;
-    
-    /* Mantenemos texto blanco, pero añadimos sombra sutil para legibilidad sobre vídeo brillante */
     color: #ffffff; 
     text-shadow: 0px 2px 10px rgba(0,0,0,0.5); 
-    
-    z-index: 3; /* Por encima de todo en la sección Hero */
+    z-index: 3;
 }
 
 .hero-content h1 {
@@ -185,21 +152,16 @@ a {
     margin-top: 10px;
 }
 
-/* =========================================
-   4. BOTONES REUTILIZABLES
-   ========================================= */
 .btn-shop {
     display: inline-block;
     margin-top: 35px;
-    border: 2px solid #ffffff; /* Borde un poco más grueso para video brillante */
+    border: 2px solid #ffffff;
     padding: 12px 45px;
     color: #ffffff;
     font-size: 0.7rem;
     font-weight: bold;
     letter-spacing: 2px;
     transition: all 0.4s ease;
-    
-    /* Un poco de fondo oscuro sutil para que el botón se vea mejor sobre video claro */
     background: rgba(0,0,0,0.3); 
     cursor: pointer;
 }
@@ -209,16 +171,11 @@ a {
     color: #000000;
 }
 
-/* =========================================
-   5. FOOTER (Ya estaba separado y blanco, lo reforzamos)
-   ========================================= */
 footer {
     padding: 60px 20px;
     text-align: center;
-    
-    /* MODIFICACIÓN REQUERIDA: Fondo blanco sólido, separado físicamente */
     background: #ffffff;
-    border-top: 1px solid rgba(0,0,0,0.05); /* Borde sutil superior */
+    border-top: 1px solid rgba(0,0,0,0.05);
 }
 
 footer p {
@@ -227,31 +184,25 @@ footer p {
     color: #888888;
 }
 
-/* =========================================
-   6. MEDIA QUERIES (Actualizado para el nuevo layout)
-   ========================================= */
 @media (max-width: 768px) {
     :root { --padding-std: 20px; }
-    .nav-right ul { gap: 15px; }
-    .logo { font-size: 1rem; }
+    .navbar { padding: 0 20px; }
+    .nav-left ul, .nav-right ul { gap: 15px; }
+    .logo { font-size: 1.8rem; }
+    .navbar a { font-size: 0.7rem; letter-spacing: 1px; }
     .hero-content h1 { font-size: 2.2rem; }
     .hero-content p { font-size: 0.7rem; letter-spacing: 3px; }
     .btn-shop { padding: 10px 30px; margin-top: 25px;}
 }
 
-/* =========================================
-   7. PARCHE PARA PÁGINAS SIN HEADER (Splash Page)
-   ========================================= */
 body.no-header {
-    padding-top: 0; /* Quitamos el espacio del menú fantasma */
+    padding-top: 0;
 }
 
 body.no-header .hero {
-    margin-top: 0; /* Pegamos el vídeo al borde superior */
+    margin-top: 0;
 }
-/* =========================================
-   8. FORMULARIOS (LOGIN / REGISTRO)
-   ========================================= */
+
 .auth-container {
     min-height: calc(100vh - var(--nav-height) - 150px);
     display: flex;
@@ -351,9 +302,7 @@ body.no-header .hero {
     color: #008800;
     border: 1px solid #caffca;
 }
-/* =========================================
-   9. SHOP (CATÁLOGO DE PRODUCTOS)
-   ========================================= */
+
 .shop-container {
     padding: 60px var(--padding-std);
     min-height: calc(100vh - var(--nav-height) - 150px);
@@ -369,7 +318,6 @@ body.no-header .hero {
 
 .product-grid {
     display: grid;
-    /* Esto hace que sea responsivo automáticamente: caben tantas columnas de 250px como permita la pantalla */
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 40px;
 }
@@ -377,59 +325,70 @@ body.no-header .hero {
 .product-card {
     text-align: center;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+}
+
+.product-card a {
+    text-decoration: none;
+    color: #000;
 }
 
 .product-image {
     width: 100%;
     height: 350px;
-    background-color: #f5f5f5; /* Gris clarito de fondo mientras no hay fotos */
+    background-color: #f5f5f5;
     object-fit: cover;
     margin-bottom: 15px;
     transition: opacity 0.3s ease;
 }
 
 .product-card:hover .product-image {
-    opacity: 0.7; /* Efecto hover elegante */
+    opacity: 0.7;
 }
 
-.product-info h3 {
-    font-size: 0.8rem;
-    letter-spacing: 2px;
+.product-info h3, .product-card h3 {
+    font-family: var(--font-main);
+    font-size: 1.1rem;
+    letter-spacing: -1px;
     margin-bottom: 5px;
+    text-transform: uppercase;
     font-weight: bold;
 }
 
-.product-info p {
-    font-size: 0.75rem;
-    color: var(--accent-color);
+.product-info p, .product-card p {
+    font-size: 1rem;
+    color: #666;
+    font-weight: bold;
 }
-/* =========================================
-   10. DETALLE DE PRODUCTO
-   ========================================= */
+
 .product-detail-container {
     display: flex;
-    flex-wrap: wrap; /* Para que en móviles se ponga uno debajo del otro */
+    flex-wrap: wrap;
     padding: 60px var(--padding-std);
     min-height: calc(100vh - var(--nav-height) - 150px);
     gap: 60px;
     max-width: 1200px;
-    margin: 0 auto; /* Centra el contenido en pantallas gigantes */
+    margin: 0 auto;
 }
 
 .product-detail-image {
-    flex: 1; /* Ocupa la mitad del espacio */
+    flex: 1;
     min-width: 300px;
-    background-color: #f5f5f5; /* Fondo gris temporal */
+    background-color: #f5f5f5;
     min-height: 500px;
     object-fit: cover;
 }
 
 .product-detail-info {
-    flex: 1; /* Ocupa la otra mitad */
+    flex: 1;
     min-width: 300px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centra el texto verticalmente */
+    justify-content: center;
 }
 
 .product-detail-info h1 {
@@ -463,19 +422,17 @@ body.no-header .hero {
     letter-spacing: 3px;
     cursor: pointer;
     transition: background 0.3s;
-    width: 100%; /* Botón ancho estilo minimalista */
+    width: 100%;
 }
 
 .btn-add-cart:hover {
     background-color: var(--accent-color);
 }
-/* =========================================
-   11. CARRITO DE COMPRAS
-   ========================================= */
+
 .cart-container {
     padding: 60px var(--padding-std);
     min-height: calc(100vh - var(--nav-height) - 150px);
-    max-width: 800px; /* Hacemos el contenedor más estrecho para que se vea mejor */
+    max-width: 800px;
     margin: 0 auto;
 }
 
@@ -539,9 +496,7 @@ body.no-header .hero {
     text-decoration: underline;
     cursor: pointer;
 }
-/* =========================================
-   12. ANIMACIÓN LOGO ROTATIVO (EFECTO MONEDA 3D)
-   ========================================= */
+
 @keyframes rotacionContinua {
     from {
         transform: perspective(500px) rotateY(0deg);
@@ -561,14 +516,11 @@ body.no-header .hero {
     animation: rotacionContinua 8s linear infinite; 
 }
 
-/* =========================================
-   SECCIÓN "MÁS PRODUCTOS" (PÁGINA INDIVIDUAL)
-   ========================================= */
 .more-products {
     padding: 80px var(--padding-std);
     max-width: 1200px;
     margin: 0 auto;
-    border-top: 1px solid #dddddd; /* Una línea sutil para separar la ficha del producto de esta sección */
+    border-top: 1px solid #dddddd;
 }
 
 .more-products h2 {
@@ -579,48 +531,10 @@ body.no-header .hero {
     font-weight: 900;
 }
 
-.product-grid {
-    display: grid;
-    /* Esto hace que sea responsive automáticamente: 
-       En móvil se pondrán en 1 columna, en PC en 4 columnas */
+.more-products .product-grid {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 40px;
 }
 
-.product-card {
-    text-align: center;
-    transition: transform 0.3s ease; /* Transición suave */
-}
-
-/* Efecto al pasar el ratón: el producto flota un poco hacia arriba */
-.product-card:hover {
-    transform: translateY(-8px);
-}
-
-.product-card a {
-    text-decoration: none;
-    color: #000;
-}
-
-.product-card img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1/1; /* Mantiene las fotos cuadradas uniformes */
-    object-fit: cover; /* Evita que las fotos se deformen */
-    margin-bottom: 15px;
-    background-color: #f9f9f9; /* Un fondito gris muy claro por si la foto tiene transparencias */
-}
-
-.product-card h3 {
-    font-family: var(--font-main);
-    font-size: 1.1rem;
-    letter-spacing: -1px;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-}
-
-.product-card p {
-    font-weight: bold;
-    color: #666;
-    font-size: 1rem;
+.more-products .product-card img {
+    aspect-ratio: 1/1;
 }
