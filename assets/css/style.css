@@ -538,3 +538,87 @@ body.no-header .hero {
 .more-products .product-card img {
     aspect-ratio: 1/1;
 }
+
+.music-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 60px var(--padding-std);
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 150vh; 
+}
+
+.tracklist {
+    flex: 1;
+    min-width: 300px;
+    padding-right: 50px;
+}
+
+.tracklist h1 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -3px;
+    text-transform: lowercase;
+    margin-bottom: 15px;
+    line-height: 1;
+}
+
+.tracklist p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: #666;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+    line-height: 1.6;
+}
+
+.track {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-decoration: none;
+    color: inherit;
+    padding: 15px 0;
+    border-bottom: 1px solid #eeeeee;
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: color 0.3s, padding-left 0.3s;
+}
+
+.track:hover {
+    color: var(--accent-color);
+    padding-left: 10px;
+}
+
+.track-cover {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.disc-wrapper {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+}
+
+.sticky-container {
+    position: sticky;
+    top: 150px; 
+    transform: scale(1.6);
+}
+
+#dvd-disc {
+    width: 500px;
+    height: 500px;
+    object-fit: contain;
+    filter: drop-shadow(0px 20px 30px rgba(0,0,0,0.3));
+}
