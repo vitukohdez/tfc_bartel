@@ -24,7 +24,7 @@
         </div>
 
         <div class="nav-center">
-            <a href="index.php" class="logo">bartel</a>
+            <a href="shop.php" class="logo">bartel</a>
         </div>
 
         <div class="nav-right">

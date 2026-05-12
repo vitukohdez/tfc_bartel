@@ -309,11 +309,16 @@ body.no-header .hero {
 }
 
 .shop-title {
-    text-align: center;
-    font-size: 1.5rem;
-    letter-spacing: 6px;
-    margin-bottom: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 4rem;
     font-weight: 900;
+    font-style: italic;
+    letter-spacing: -4px;
+    text-transform: lowercase;
+    text-align: center;
+    margin-bottom: 60px;
+    line-height: 1;
+    color: #000;
 }
 
 .product-grid {
@@ -621,4 +626,77 @@ body.no-header .hero {
     height: 500px;
     object-fit: contain;
     filter: drop-shadow(0px 20px 30px rgba(0,0,0,0.3));
+}
+
+.inspiration-container {
+    padding: 120px var(--padding-std) 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.inspiration-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.inspiration-header h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -3px;
+    text-transform: lowercase;
+    line-height: 1;
+}
+
+.inspiration-header p {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.moodboard {
+    column-count: 3;
+    column-gap: 20px;
+}
+
+@media (max-width: 900px) { .moodboard { column-count: 2; } }
+@media (max-width: 600px) { .moodboard { column-count: 1; } }
+
+.mood-item {
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+    break-inside: avoid;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+
+.mood-item img {
+    width: 100%;
+    display: block;
+    filter: grayscale(100%);
+    transition: all 0.6s ease;
+}
+
+.mood-item:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.03);
+}
+
+.mood-caption {
+    padding: 15px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mood-tag {
+    color: #ffdd03;
+    font-style: italic;
 }
