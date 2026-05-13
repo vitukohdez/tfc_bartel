@@ -19,7 +19,8 @@ try {
             <?php foreach ($productos as $producto): ?>
                 
                 <a href="producto.php?id=<?php echo $producto['id']; ?>" class="product-card">
-                    <div class="product-image"></div>
+                    <!-- Aquí está el cambio: hemos puesto la etiqueta img para que lea la base de datos -->
+                    <img src="assets/images/<?php echo htmlspecialchars($producto['imagen']); ?>" alt="<?php echo htmlspecialchars($producto['nombre']); ?>" class="product-image">
                     
                     <div class="product-info">
                         <h3><?php echo htmlspecialchars($producto['nombre']); ?></h3>

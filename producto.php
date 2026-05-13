@@ -1,42 +1,45 @@
 <?php 
 require_once 'includes/db.php'; 
 
-// 1. Recoger el ID de la URL (Ej: producto.php?id=2)
-// Usamos filter_input para asegurarnos de que es un número (Seguridad extra)
 $id_producto = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-// Si no hay ID o alguien pone letras en la URL (producto.php?id=hola), lo echamos a la tienda
 if (!$id_producto) {
     header("Location: shop.php");
     exit;
 }
 
-// 2. Buscar el producto en la base de datos (Evitando Inyección SQL con prepare)
 try {
     $stmt = $pdo->prepare("SELECT * FROM productos WHERE id = ?");
     $stmt->execute([$id_producto]);
     $producto = $stmt->fetch();
 
-    // Si el producto no existe (ej: producto.php?id=999), lo echamos a la tienda
     if (!$producto) {
         header("Location: shop.php");
         exit;
     }
 } catch (\PDOException $e) {
-    error_log("Error al cargar producto: " . $e->getMessage());
+    error_log($e->getMessage());
     die("Hubo un problema al cargar el producto.");
 }
 
-// 3. Pintar la página
 include 'includes/header.php'; 
 ?>
 
 <section class="product-detail-container">
-    <!-- Mitad izquierda: Imagen -->
-    <!-- De momento mostramos el recuadro gris, más adelante pondremos: src="assets/img/<?php echo $producto['imagen']; ?>" -->
-    <div class="product-detail-image"></div>
+    <?php if ($producto['id'] == 1): ?>
+        <div class="product-gallery">
+            <img src="assets/images/<?php echo htmlspecialchars($producto['imagen']); ?>" alt="<?php echo htmlspecialchars($producto['nombre']); ?>" class="product-detail-image" id="main-product-image">
+            
+            <div class="thumbnail-slider">
+                <img src="assets/images/<?php echo htmlspecialchars($producto['imagen']); ?>" onclick="changeImage(this.src)">
+                <img src="assets/images/camisetaVERDE.png" onclick="changeImage(this.src)">
+                <img src="assets/images/camisetaMARILLA.png" onclick="changeImage(this.src)">
+            </div>
+        </div>
+    <?php else: ?>
+        <img src="assets/images/<?php echo htmlspecialchars($producto['imagen']); ?>" alt="<?php echo htmlspecialchars($producto['nombre']); ?>" class="product-detail-image">
+    <?php endif; ?>
 
-    <!-- Mitad derecha: Información -->
     <div class="product-detail-info">
         <h1><?php echo htmlspecialchars($producto['nombre']); ?></h1>
         <p class="product-price"><?php echo number_format($producto['precio'], 2); ?> €</p>
@@ -45,51 +48,66 @@ include 'includes/header.php';
             <?php echo nl2br(htmlspecialchars($producto['descripcion'])); ?>
         </p>
 
-        <!-- Formulario para añadir al carrito (lo programaremos después) -->
         <form action="carrito.php" method="POST">
             <input type="hidden" name="producto_id" value="<?php echo $producto['id']; ?>">
+            
+            <?php if ($producto['id'] == 1): ?>
+                <div class="product-options">
+                    <div class="option-group">
+                        <label for="color">Color</label>
+                        <select name="color" id="color">
+                            <option value="Red">Red</option>
+                            <option value="Green">Green</option>
+                            <option value="Yellow">Yellow</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <label for="size">Size</label>
+                        <select name="size" id="size">
+                            <option value="S">Small</option>
+                            <option value="M">Medium</option>
+                            <option value="L">Large</option>
+                            <option value="XL">X-Large</option>
+                        </select>
+                    </div>
+                </div>
+            <?php endif; ?>
+
             <button type="submit" class="btn-add-cart">ADD TO CART</button>
         </form>
     </div>
 </section>
 
-<section class="more-products">
-    <h2>YOU MAY ALSO LIKE</h2>
-    <div class="product-grid">
-        <?php
-        try {
-            // Consulta pidiendo 4 productos al azar
-            $query_mas = "SELECT * FROM productos ORDER BY RAND() LIMIT 4";
-            
-            // Ejecutamos la consulta usando tu variable $pdo
-            $stmt = $pdo->query($query_mas);
-            
-            // Obtenemos todos los resultados en un array
-            $productos_relacionados = $stmt->fetchAll();
-            
-            // Comprobamos si hay productos
-            if (count($productos_relacionados) == 0) {
-                echo "<p style='text-align: center; width: 100%;'>No hay productos extra para mostrar.</p>";
-            } else {
-                // Bucle para mostrar cada producto
-                foreach ($productos_relacionados as $item) {
-        ?>
-                    <div class="product-card">
-                        <a href="producto.php?id=<?php echo $item['id']; ?>">
-                            <img src="assets/images/<?php echo $item['imagen']; ?>" alt="<?php echo $item['nombre']; ?>">
-                            <h3><?php echo $item['nombre']; ?></h3>
-                            <p><?php echo $item['precio']; ?> €</p>
-                        </a>
-                    </div>
+<section class="recommended-section">
+    <h2>you may also like</h2>
+    
+    <div class="recommended-grid">
         <?php 
-                } // fin del foreach
-            } // fin del if
-        } catch (PDOException $e) {
-            // Si algo falla en la base de datos, te lo chiva en rojo
-            echo "<p style='color: red; text-align: center;'>Error SQL: " . $e->getMessage() . "</p>";
-        }
+        $stmt_rec = $pdo->prepare("SELECT * FROM productos WHERE id != ? LIMIT 3");
+        $stmt_rec->execute([$producto['id']]);
+        $recomendados = $stmt_rec->fetchAll();
+        
+        foreach ($recomendados as $rec): 
         ?>
+            <a href="producto.php?id=<?php echo $rec['id']; ?>" class="product-card">
+                <img src="assets/images/<?php echo htmlspecialchars($rec['imagen']); ?>" alt="<?php echo htmlspecialchars($rec['nombre']); ?>" class="product-image">
+                <div class="product-info">
+                    <h3><?php echo htmlspecialchars($rec['nombre']); ?></h3>
+                    <p><?php echo number_format($rec['precio'], 2); ?> €</p>
+                </div>
+            </a>
+        <?php endforeach; ?>
     </div>
 </section>
+
+<script>
+    function changeImage(newSrc) {
+        var mainImage = document.getElementById('main-product-image');
+        if (mainImage) {
+            mainImage.src = newSrc;
+        }
+    }
+</script>
 
 <?php include 'includes/footer.php'; ?>
