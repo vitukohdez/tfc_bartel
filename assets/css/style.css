@@ -841,3 +841,33 @@ body.no-header .hero {
 .option-group select:hover, .option-group select:focus {
     border-color: #000;
 }
+.footer-marquee {
+    background-color: #d80000;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 3px 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.marquee-content {
+    display: inline-flex;
+    animation: scroll-marquee 20s linear infinite;
+}
+
+.marquee-content span {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 40px;
+    color: #ffffff;
+    letter-spacing: -3px;
+    margin: 0 30px;
+    text-transform: lowercase;
+}
+
+@keyframes scroll-marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}

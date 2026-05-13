@@ -1,4 +1,28 @@
 </main>
+<div class="footer-marquee">
+    <div class="marquee-content">
+        <span>bartel</span>
+        <span>bartel</span>
+        <span>bartel</span>
+        <span>bartel</span>
+        <span>bartel</span>
+        <span>bartel</span>
+        <span>bartel</span>
+        <span>bartel</span>
+        <span>bartel</span>
+        <span>bartel</span>
+        <span>bartel</span>
+        <span>bartel</span>
+        <span>bartel</span>
+        <span>bartel</span>
+        <span>bartel</span>
+        <span>bartel</span>
+        <span>bartel</span>
+        <span>bartel</span>
+        <span>bartel</span>
+        <span>bartel</span>
+    </div>
+</div>
 <footer>
     <p>&copy; <?php echo date('Y'); ?> BARTEL OFFICIAL. ALL RIGHTS RESERVED.</p>
 </footer>
