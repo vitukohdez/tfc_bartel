@@ -1,14 +1,12 @@
 <?php
+session_start();
 require_once 'includes/db.php';
 
-// 1. Proteger la página: Solo usuarios logueados pueden comprar
 if (!isset($_SESSION['user_id'])) {
-    // Si no está logueado, lo mandamos al login
     header("Location: login.php");
     exit;
 }
 
-// 2. Comprobar que el carrito no esté vacío
 if (empty($_SESSION['carrito'])) {
     header("Location: shop.php");
     exit;
@@ -18,48 +16,47 @@ $usuario_id = $_SESSION['user_id'];
 $total_pedido = 0;
 
 try {
-    // 3. Iniciar "Transacción" (Si algo falla abajo, se revierte todo)
     $pdo->beginTransaction();
 
-    // 4. Calcular el total real desde la BD (por seguridad, para que no truquen el precio en el HTML)
-    foreach ($_SESSION['carrito'] as $id => $cantidad) {
+    foreach ($_SESSION['carrito'] as $cart_key => $item) {
         $stmt = $pdo->prepare("SELECT precio FROM productos WHERE id = ?");
-        $stmt->execute([$id]);
+        $stmt->execute([$item['id']]);
         $producto = $stmt->fetch();
         if ($producto) {
-            $total_pedido += $producto['precio'] * $cantidad;
+            $total_pedido += $producto['precio'] * $item['qty'];
         }
     }
 
-    // 5. Insertar en la tabla 'pedidos'
     $stmtPedido = $pdo->prepare("INSERT INTO pedidos (usuario_id, total) VALUES (?, ?)");
     $stmtPedido->execute([$usuario_id, $total_pedido]);
     
-    // Obtenemos el ID del pedido que se acaba de crear automáticamente
     $pedido_id = $pdo->lastInsertId();
 
-    // 6. Insertar en la tabla intermedia 'pedido_productos' (Con la "s" para que coincida con tu base de datos)
-    $stmtDetalle = $pdo->prepare("INSERT INTO pedido_productos (pedido_id, producto_id, cantidad, precio_unitario) VALUES (?, ?, ?, ?)");
+    $stmtDetalle = $pdo->prepare("INSERT INTO pedido_productos (pedido_id, producto_id, cantidad, precio_unitario, color, talla) VALUES (?, ?, ?, ?, ?, ?)");
     
-    foreach ($_SESSION['carrito'] as $id => $cantidad) {
+    foreach ($_SESSION['carrito'] as $cart_key => $item) {
         $stmt = $pdo->prepare("SELECT precio FROM productos WHERE id = ?");
-        $stmt->execute([$id]);
+        $stmt->execute([$item['id']]);
         $producto = $stmt->fetch();
         
         if ($producto) {
-            $stmtDetalle->execute([$pedido_id, $id, $cantidad, $producto['precio']]);
+            $stmtDetalle->execute([
+                $pedido_id, 
+                $item['id'], 
+                $item['qty'], 
+                $producto['precio'],
+                $item['color'],
+                $item['talla']
+            ]);
         }
     }
 
-    // 7. Todo ha ido bien, confirmamos los cambios en la Base de Datos
     $pdo->commit();
 
-    // 8. Vaciamos el carrito porque la compra ya está hecha
     $_SESSION['carrito'] = [];
     $compra_exitosa = true;
 
 } catch (\PDOException $e) {
-    // Si hubo un error (ej: la base de datos se cayó un segundo), deshacemos todo
     $pdo->rollBack();
     error_log("Error en checkout: " . $e->getMessage());
     $compra_exitosa = false;

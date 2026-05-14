@@ -12,7 +12,7 @@ try {
 ?>
 
 <section class="shop-container">
-    <h1 class="shop-title">collection 01</h1>
+    <h1 class="shop-title">→ collection 01 ←</h1>
     
     <div class="product-grid">
         <?php if (count($productos) > 0): ?>
