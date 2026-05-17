@@ -1,9 +1,8 @@
 <?php
 session_start();
-session_unset();    // Limpia las variables de sesión
-session_destroy();  // Destruye la sesión por completo
+session_unset();    
+session_destroy();  
 
-// Te redirige a la portada
 header("Location: shop.php");
 exit;
 ?>

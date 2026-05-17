@@ -1,5 +1,5 @@
 <?php
-session_start(); // <--- LO PONEMOS AQUÍ PARA QUE ESTÉ EN TODA LA WEB
+session_start(); 
 
 $host = 'localhost';
 $db   = 'tfc_bartel'; 
