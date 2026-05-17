@@ -6,13 +6,13 @@ include 'includes/header.php';
 
 <section class="inspiration-container">
     <div class="inspiration-header">
-        <h1>inspiration</h1>
+        <h1>moodboard</h1>
         <p>Creative Process / References / Mood</p>
     </div>
 
     <div class="moodboard">
         <div class="mood-item">
-            <img src="https://images.unsplash.com/photo-1515405299443-f71bb798f14e?q=80&w=800" alt="Sketch">
+            <img src="assets/images/BARTELgirarlogo.png" alt="Sketch">
             <div class="mood-caption">
                 <span>001 / sketching process</span>
                 <span class="mood-tag">#concept</span>
@@ -20,44 +20,54 @@ include 'includes/header.php';
         </div>
 
         <div class="mood-item">
-            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800" alt="90s tech">
+            <img src="assets/images/IMG_1662.jpg" alt="90s tech">
             <div class="mood-caption">
-                <span>002 / retro hardware</span>
-                <span class="mood-tag">#references</span>
+                <span>002 / satenier</span>
+                <span class="mood-tag">#inspiration</span>
             </div>
         </div>
 
         <div class="mood-item">
-            <img src="https://images.unsplash.com/photo-1493397212122-2b85def82820?q=80&w=800" alt="Architecture">
+            <img src="assets/images/IMG_1661.jpg" alt="Architecture">
             <div class="mood-caption">
-                <span>003 / concrete lines</span>
+                <span>003 / cbum</span>
                 <span class="mood-tag">#architecture</span>
             </div>
         </div>
 
         <div class="mood-item">
-            <img src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=800" alt="Texture">
+            <img src="assets/images/IMG_1664.jpg" alt="Texture">
             <div class="mood-caption">
-                <span>004 / industrial textures</span>
-                <span class="mood-tag">#mood</span>
+                <span>004 / concept</span>
+                <span class="mood-tag">#concept</span>
             </div>
         </div>
 
         <div class="mood-item">
-            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800" alt="Typography">
+            <img src="assets/images/IMG_1663.jpg" alt="Typography">
             <div class="mood-caption">
-                <span>005 / bold type studies</span>
+                <span>005 / lancia delta INTEGRALE</span>
+                <span class="mood-tag">#cars</span>
+            </div>
+        </div>
+
+        <div class="mood-item">
+            <img src="assets/video/bartelpsp.mp4" alt="Abstract">
+            <div class="mood-caption">
+                <span>006 / BARTEL PSP</span>
                 <span class="mood-tag">#design</span>
             </div>
         </div>
 
         <div class="mood-item">
-            <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=800" alt="Abstract">
+            <img src="assets/images/logoSHEITO.png" alt="Abstract">
             <div class="mood-caption">
-                <span>006 / color palette #01</span>
-                <span class="mood-tag">#color</span>
+                <span>007 / SHEITO PAISÓN</span>
+                <span class="mood-tag">#inspiration</span>
             </div>
         </div>
+
+        
     </div>
 </section>
 
