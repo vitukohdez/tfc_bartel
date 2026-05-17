@@ -27,10 +27,8 @@
     <p>&copy; <?php echo date('Y'); ?> BARTEL OFFICIAL. ALL RIGHTS RESERVED.</p>
 </footer>
 
-<!-- Logo rotativo global (La animación la hace el CSS que acabamos de meter) -->
 <img src="assets/images/logo_rotativo.png" id="logo-rotativo" alt="Bartel Logo">
 
-<!-- MAGIA JAVASCRIPT EXCLUSIVA PARA EL SCROLL DEL DVD DE MÚSICA -->
 <script>
     window.addEventListener('scroll', function() {
         let scrollY = window.scrollY;

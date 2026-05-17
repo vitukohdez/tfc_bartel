@@ -1,7 +1,6 @@
 <?php 
 require_once 'includes/db.php'; 
 
-// Esta es la "magia": le decimos al archivo header.php que no muestre el menú aquí
 $hide_header = true; 
 include 'includes/header.php'; 
 ?>
@@ -12,7 +11,6 @@ include 'includes/header.php';
     </video>
 
     <div class="hero-content">
-            <!-- LOGO TEXTO GIGANTE -->
             <h1 class="logo-gigante">bartel</h1>
             
             <p style="letter-spacing: 4px; margin-top: 20px;">SUMMER 2026</p>
